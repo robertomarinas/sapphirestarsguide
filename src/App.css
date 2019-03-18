@@ -1,0 +1,699 @@
+h1, h2 {
+  /*margin-bottom: 1rem;*/
+}
+
+body {
+  /*background-color: #000000e0;*/
+  color: #ffffffbd;
+}
+
+/*pseudo styles for "placeholder"*/
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-style: italic;
+  letter-spacing: 0.1rem;
+  opacity: 0.5;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: pink;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: pink;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: pink;
+}
+
+input[type=text] {
+  border-radius: 5px;
+  box-shadow: none;
+  border: 2px solid #2b2b2b;
+}
+
+button {
+  outline: none;
+  background: none;
+  border: none;
+}
+
+#root {
+  
+}
+
+.App {
+	min-height: 100vh;
+  /*overflow: hidden;*/
+}
+
+.App-header {
+  /*background: #464040;*/
+  background-color: #000000e0;
+  /*padding: 0 0 5px;*/
+  padding: 0 15px;
+}
+
+.container {
+  /*padding: 0 15px;*/
+  /*background-color: #000;*/
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-bar-container {
+  position: relative;
+  /*border: 1px solid;*/
+}
+
+.search-bar {
+  display: inline-block;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.search-btn {
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  z-index: 1;
+  color: #fff;
+  cursor: pointer;
+  /*background-color: #0093fbde;*/
+  background: none;
+  /*border: 2px solid #000;*/
+  border: none;
+  border-radius: 5px;
+  /*padding: 0.5rem;*/
+  /*height: 100%;*/
+  /*width: auto;*/
+}
+
+.advanced-search-container {
+  margin-top: 5px;
+  padding: 5px 0 10px;
+}
+
+.key-results-container {
+  position: relative;
+}
+.key-results-container-toggle {
+  position: absolute;
+  top: -33px;
+  right: 0;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.key-results-container-toggle:active {
+  box-shadow: inset 0 0 5px 1px #fff;
+}
+
+.key-results {
+  display: flex;
+  flex-wrap: wrap;
+  /*height: 100vh;*/
+  align-content: flex-start;
+  justify-content: flex-start;
+  /*align-items: space-around;*/
+  
+  padding: 10px 10px 0 0;
+  border: 1px solid #2b2b2b;
+  border-radius: 5px;
+  overflow-y: scroll;
+  max-height: 200px;
+}
+
+.key-results.hide {
+  display: none;
+}
+
+.key-results li {
+  flex: 1 1 auto;
+  /*flex-basis: calc(auto, );*/
+  margin: 0 0 10px 10px;
+  text-align: center;
+  /*padding: 0.5em 1em;*/
+  border: 1px solid #000;
+  border-radius: 5px;
+  /*display: flex;*/
+  /*justify-content: space-around;*/
+}
+
+.key-results li button {
+  display: block;
+  background-color: #f9f9f9!important;
+  background-size: 25px!important;
+  color: #2b2b2b;
+  /*text-align: right;*/
+  /*padding: 0.5em 1em;*/
+  padding: 10px 5px 10px 30px;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+}
+
+.key-results li button:active {
+  box-shadow: inset 0 0 5px 1px #2b2b2b;
+}
+
+.key-results li button span {
+  font-size: 0.9em;
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+/* Armor Loadout Builder */
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /*padding-top: 5px;*/
+}
+
+.main-content h2 {
+  margin-bottom: 5px;
+}
+
+.main-content > div {
+  flex: 1;
+  /*opacity: 0.5;*/
+  /*flex-basis: 100%;*/
+  /*flex: 0 1 370px;*/
+  /*border: 1px solid;*/
+}
+
+.hunter-ui-card {
+  background-color: #000000e0;
+  padding: 15px;
+  /*height: 100vh;     */
+}
+
+.equipment-list > ul {
+	/*display: flex;*/
+}
+
+.equipment-list > ul > li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.equipment-list > ul li span {
+  flex: 0;
+  /*flex: 0 0;*/
+  display: flex;
+  /*align-items: center;*/
+  justify-content: center;
+  /*border: 1px solid #f00;*/
+}
+
+.equipment-list > ul li span input[type=text] {
+  padding: 10px;
+  width: 100%;
+  height: 50px;
+}
+
+.equipment-list > ul li .armor-svg {
+  border: 2px solid #000;
+  border-radius: 5px;
+  flex-basis: 50px;
+}
+
+.equipment-list > ul li .selected-armor {
+  flex-grow: 1;
+  /*flex-basis: 250px;*/
+  /*margin: 0 10px;*/
+}
+
+.equipment-list > ul li .armor-part-container {
+  position: relative;
+  width: 100%;
+}
+
+.equipment-list > ul li .armor-part-container .input-container {
+  position: relative;
+  height: 50px;
+  background-color: #f1f1f1!important;
+  border-radius: 5px;
+  /*border: 1px solid;*/
+  display: flex;
+  align-items: center;
+}
+
+.equipment-list > ul li .armor-part-container .input-container input {
+  /*background: url('../src/weapon.svg') 5px center no-repeat;*/
+  background-size: 35px!important;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.equipment-list > ul li .armor-part-container .input-container .clear-button {
+  /*position: absolute;
+  width: 25px;
+  height: 25px;
+  top: calc(25px / 2);
+  right: calc(30px / 2);
+  font-weight: bold;
+  color: #2b2b2b;*/
+}
+
+.equipment-list > ul li .armor-part-container .input-container.selected {
+  border: 2px solid #2b2b2b;
+  border-radius: 5px;
+  background-size: 35px!important;
+  color: #000;
+  padding-left: 60px;
+}
+
+.equipment-list > ul li .armor-part-container .slots-container {
+  position: relative;
+  display: flex;
+  /*align-items: center;*/
+  /*justify-content: center;*/
+  /*flex: 1;*/
+}
+
+.equipment-list > ul li .armor-part-container .slots-container .slot-container {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  height: 50px;
+  border: 2px solid #000;
+  border-radius: 5px;
+    /*display: flex;*/
+  
+  /*justify-content: flex-start;*/
+  /*padding-left: 25px;*/
+}
+
+.equipment-list > ul li .armor-part-container .slots-container .slot-container span {
+  flex: 1;
+  justify-content: flex-start;
+  padding-left: 35px;
+}
+
+.equipment-list > ul li .armor-part-container .slots-container .slot-container input {
+  /*width: 24px;*/
+  /*height: 24px;*/
+  /*flex: 1;*/
+  color: #ffffffbd;
+  width: 100%;
+  height: 50px;
+  border: 1px solid #000;
+  /*box-shadow: inset 0 0 5px 1px #000;*/
+  padding-left: 35px;
+  padding-right: 10px;
+  border-radius: 5px;
+  background-size: 24px!important;
+}
+
+.equipment-list > ul li .armor-part-container .slots-container .slot-container .clear-button {
+  color: #ffffffbd;
+}
+
+.equipment-list > ul li .armor-part-container .slots-container .slots-search-results {
+  position: absolute;
+  z-index: 3;
+  top: 50px;
+  left: 0;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #000;
+  width: 100%;
+}
+
+.equipment-list > ul li .armor-part-container .slots-container .slots-search-results li button {
+  width: 100%;
+  padding: 15px 10px;
+  border: 1px solid #000;
+  text-align: left;
+}
+
+/*.equipment-list > ul li .armor-part-container .armor-part-search-result li {
+  border-bottom: 1px solid #000;
+}
+
+.equipment-list > ul li .armor-part-container .armor-part-search-result li button {
+  padding: 15px 10px;
+}*/
+
+.equipment-list > ul li .armor-part-container .slots-container .slot-one {
+  background: url('../src/gemslot1.png') 5px no-repeat;
+}
+
+.equipment-list > ul li .armor-part-container .slots-container .slot-two {
+  background: url('../src/gemslot2.png') 5px no-repeat;
+}
+
+.equipment-list > ul li .armor-part-container .slots-container .slot-three {
+  background: url('../src/gemslot3.png') 5px no-repeat;
+}
+
+.equipment-list > ul li .armor-part-container .input-container.head, .equipment-list > ul li .armor-part-container .input-container input.head, .key-results li button.head {
+  background: url('../src/helm.svg') 5px center no-repeat;  
+}
+
+.equipment-list > ul li .armor-part-container .input-container.chest, .equipment-list > ul li .armor-part-container .input-container input.chest, .key-results li button.chest {
+  background: url('../src/chest.svg') 5px center no-repeat;  
+}
+
+.equipment-list > ul li .armor-part-container .input-container.gloves, .equipment-list > ul li .armor-part-container .input-container input.gloves, .key-results li button.gloves {
+  background: url('../src/arms.svg') 5px center no-repeat;  
+}
+
+.equipment-list > ul li .armor-part-container .input-container.waist, .equipment-list > ul li .armor-part-container .input-container input.waist, .key-results li button.waist {
+  background: url('../src/waist.svg') 5px center no-repeat;  
+}
+
+.equipment-list > ul li .armor-part-container .input-container.legs, .equipment-list > ul li .armor-part-container .input-container input.legs, .key-results li button.legs {
+  background: url('../src/legs.svg') 5px center no-repeat;  
+}
+
+.equipment-list > ul li .armor-part-container .input-container.charm, .equipment-list > ul li .armor-part-container .input-container input.charm {
+  background: url('../src/charm.svg') 5px center no-repeat;  
+}
+
+.equipment-list > ul li .armor-part-container .input-container input.weapon-default {
+  background: url('../src/weapon.svg') 5px center no-repeat;  
+}
+
+.equipment-list > ul li .armor-part-container .input-container.sword-and-shield {
+  background: url('../src/swordandshield.svg') 5px center no-repeat;
+}
+
+.equipment-list > ul li .armor-part-container .input-container.dual-blades {
+  background: url('../src/dualblades.svg') 5px center no-repeat;
+}
+
+.equipment-list > ul li .armor-part-container .input-container.great-sword {
+  background: url('../src/greatsword.svg') 5px center no-repeat;
+}
+
+.equipment-list > ul li .armor-part-container .input-container.long-sword {
+  background: url('../src/longsword.svg') 5px center no-repeat;
+}
+
+.equipment-list > ul li .armor-part-container .input-container.insect-glaive {
+  background: url('../src/insectglaive.svg') 5px center no-repeat;
+}
+
+.equipment-list > ul li .armor-part-container .input-container.switch-axe {
+  background: url('../src/switchaxe.svg') 5px center no-repeat;
+}
+
+.equipment-list > ul li .armor-part-container .input-container.charge-blade {
+  background: url('../src/chargeblade.svg') 5px center no-repeat;
+}
+
+.equipment-list > ul li .armor-part-container .input-container.hammer {
+  background: url('../src/hammer.svg') 5px center no-repeat;
+}
+
+.equipment-list > ul li .armor-part-container .input-container.hunting-horn {
+  background: url('../src/huntinghorn.svg') 5px center no-repeat;
+}
+
+.equipment-list > ul li .armor-part-container .input-container.lance {
+  background: url('../src/lance.svg') 5px center no-repeat;
+}
+
+.equipment-list > ul li .armor-part-container .input-container.gunlance {
+  background: url('../src/gunlance.svg') 5px center no-repeat;
+}
+
+.equipment-list > ul li .armor-part-container .input-container.light-bowgun {
+  background: url('../src/lightbowgun.svg') 5px center no-repeat;
+}
+
+.equipment-list > ul li .armor-part-container .input-container.heavy-bowgun {
+  background: url('../src/heavybowgun.svg') 5px center no-repeat;
+}
+
+.equipment-list > ul li .armor-part-container .input-container.bow {
+  background: url('../src/bow.svg') 5px center no-repeat;
+}
+
+.equipment-list > ul li .armor-part-container .input-container .clear-button:active {
+  opacity: 0.5;
+}
+
+.clear-button {
+  /*background: url('../src/remove.svg') center no-repeat;*/
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: calc(25px / 2);
+  right: calc(30px / 2);
+  font-weight: bold;
+  color: #2b2b2b;
+}
+
+.clear-button.selected {
+  background: url('../src/remove.svg') center no-repeat;
+}
+
+.equipment-list > ul li .armor-part-container .armor-part-search-result {
+  position: absolute;
+  /*top: 60px;*/
+  z-index: 2;
+  background-color: #fff;
+  width: 100%;
+  /*padding: 0 5px;*/
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+.equipment-list > ul li .armor-part-container .armor-part-search-result li {
+  /*border-bottom: 1px solid #000;*/
+}
+
+.equipment-list > ul li .armor-part-container .armor-part-search-result li button {
+  width: 100%;
+  padding: 15px 10px;
+  text-align: left;
+  border-bottom: 1px solid #000;
+
+}
+
+/** Default Card styles **/
+
+.hunter-ui-card.results > ul > li {
+  display: flex;
+  padding-bottom: 5px;
+  border-bottom: 2px dotted #ffffff40;
+  justify-content: space-between;
+  text-transform: capitalize;
+}
+
+.hunter-ui-card.results > ul > li span {
+  /*display: flex;*/
+  /*flex: 0;*/
+  flex: 1;
+  /*border: 1px solid;*/
+}
+
+.hunter-ui-card.results > ul > li span:first-child {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.hunter-ui-card.results > ul > li span:last-child {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+/** SKILLS LIST **/
+
+.skills-list > ul > li > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.skills-list > ul > li > div > ul {
+  display: flex;
+  /*justify-content: space-between;*/
+}
+
+.skills-list > ul > li > div > ul li {
+  /*flex: 1 1 10px;*/
+  /*display: flex;*/
+  /*flex-basis: 5px;*/
+  /*justify-content: space-between;*/
+  /*align-items: space-between;*/
+  border: 1px solid #fff;
+  border-radius: 2px;
+  margin-right: 2px;
+  padding: 5px;
+  /*background-color: #a5e016;*/
+}
+
+.skills-list > ul > li > div > ul li.active {
+  background-color: #a5e016;
+}
+
+.skills-list > ul > li span {
+  align-self: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 1px 4px;
+}
+
+.skills-list > ul > li span.exceeded {
+  background-color: #f00;
+  flex: 0;
+} 
+
+.status-list ul {
+  margin-bottom: 15px;
+}
+
+.status-list .attack-status-list li {
+  display: flex;
+}
+
+.status-list .attack-status-list li.attack-info {
+  flex-direction: column;
+}
+
+.status-list .attack-status-list li.attack-info div {
+  padding-bottom: 5px;
+  border-bottom: 2px dotted #ffffff40;
+}
+
+.status-list .attack-status-list li.attack-info div:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.status-list .attack-status-list li div {
+  flex: 1;
+  display: flex;
+  width: 100%;
+  /*border: 1px solid #fff;*/
+}
+
+.status-list .attack-status-list li div.sharpness-bar {
+  display: inline-block;
+  border: 1px solid #949494;
+  border-radius: 5px;
+  margin-top: 5px;
+  height: 21px;
+}
+
+.status-list .attack-status-list li div.sharpness-bar span {
+  display: inline-block;
+}
+
+.status-list .attack-status-list li div span {
+  flex: 1;
+  display: flex;
+  /*border: 1px solid;*/
+  /*display: inline-block;*/
+  /*display: block;*/
+  /*border: 1px solid #fff;*/
+}
+
+.status-list .attack-status-list li span:last-child {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.status-list .attack-status-list li span.hidden {
+  color: #4a4a4a;
+}
+
+/* Media Queries */
+
+
+@media only screen
+  and (min-device-width: 768px) {
+    .container {
+      padding: 0 15px;
+    }
+    .App-header {
+      /*padding: 0.5rem 0 1rem;*/
+      /*padding: 0 0 15px;*/
+    }
+    .main-content {
+      padding-top: 1rem;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .main-content h2 { 
+      margin-bottom: 1rem;
+    }
+    .main-content > div {
+      /*flex: 0 1 370px;*/
+      flex: 1;
+      /*flex-basis: 45%;*/
+
+    }
+    .main-content > div.main {
+      flex-basis: 40%
+      /*flex-basis: 50%*/
+    }
+    .main-content > div.hunter-status {
+      display: flex;
+      flex-basis: 60%;
+      /*flex-basis: 50%;*/
+      /*margin-left: 15px;*/
+    }
+    .main-content > div.hunter-status > div {
+      flex: 1;
+    }
+
+    .main-content > div.hunter-status .skills-list, .main-content > div.hunter-status .status-list {
+      margin-left: 15px;
+    }
+
+    .hunter-ui-card {
+      border-radius: 5px;
+      height: auto;
+    }
+}
+
+@media only screen
+  and (min-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    body {
+      background-color: #fff;
+    }
+    .container {
+      width: 980px;
+      margin: 0 auto;
+      background-color: none;
+    }
+    .App-header .container {
+      /*background-color: #000000e0;*/
+    }
+    .search-container {
+      /*max-width: 480px;*/
+    }
+    .main-content > div.main {
+      flex-basis: 50%
+    }
+    .main-content > div.hunter-status {
+      display: flex;
+      flex-basis: 50%;
+    }
+}
+
+@media screen 
+  and (min-device-width: 1300px) 
+  and (max-device-width: 2000px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .container {
+      width: 1200px;
+      margin: 0 auto;
+      /*border: 1px solid;*/
+      /*display: none;*/
+    }
+}
