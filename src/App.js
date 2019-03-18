@@ -648,7 +648,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <div className="container">
-            <h1>SSG</h1>
+            <h1><a href="/">SapphireStar's Guide</a></h1>
             <MainSearch armorList={this.state.armorList} onSelectedArmor={this.onSelectedArmor} />
           </div>
         </header>
