@@ -8,12 +8,12 @@ const KeyResults = (props) => {
 
 	let gearList;
 	if(props.radioSelect === 'armor') {
-		gearList = props.keyResult.map((gear, index) => <li key={index}><button className={gear.armorType} data-selected-index={gear.index} data-armor-type={gear.armorType} data-selected-armor={gear.armor} data-search-bar="main-search" onClick={props.onSelectedArmor}>{gear.armor}</button></li>);
+		gearList = props.keyResult.map((gear, index) => <li key={index}><button className={gear.armorType} data-selected-index={gear.index} data-equipment-type={gear.armorType} data-selected-armor={gear.armor} data-search-bar="main-search" onClick={props.onSelectedArmor}>{gear.armor}</button></li>);
 	} else if(props.radioSelect === 'skill') {
 		gearList = props.keyResult.map((gear, index) => {
 			return (
 				<li key={index}>
-					<button className={gear.armorType} data-selected-index={gear.index} data-armor-type={gear.armorType} data-selected-armor={gear.armor} data-search-bar="main-search" onClick={props.onSelectedArmor}>
+					<button className={gear.armorType} data-selected-index={gear.index} data-equipment-type={gear.armorType} data-selected-armor={gear.armor} data-search-bar="main-search" onClick={props.onSelectedArmor}>
 						{gear.armor} - { gear.skills.map((skill, index) => `${skill.skillName}: ${skill.level}` )}
 					</button>
 				</li>

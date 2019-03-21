@@ -8,10 +8,8 @@ import AffinityStatus from './component_affinity_status';
 const StatusList = (props) => {
 
 	const selectedWeapon = props.selectedWeapon ? props.selectedWeapon : '';
-	
 	const { activeArmorSkills, activeSkillsText, selectedArmorSet } = props;
-	// const { selected: equippedWeapon } = props.selectedArmorSet.weapon;
-	// const activeArmorSkillsToArray = Object.entries(activeArmorSkills);
+	// onSkillModifier function
 
 	let activeDefenseObj = { defense: 1 };
 	let activeResistancesObj = {
@@ -29,6 +27,24 @@ const StatusList = (props) => {
 		defense: {},
 		resistance: {}
 	}
+//** Skill Modifier Property **//
+
+// affinity	- Percent	Modifies the affinity of a weapon
+// attack	- Integer	Modifies the attack value of a weapon
+// damageFire	- Integer	Modifies fire damage
+// damageWater	- Integer	Modifies water damage
+// damageIce	- Integer	Modifies ice damage
+// damageThunder	- Integer	Modifies thunder damage
+// damageDragon	- Integer	Modifies dragon damage
+// defense	- Integer	Modifies the character's defense
+// health	- Integer	Modifies the character's maximum health
+// sharpnessBonus	- Integer	Modifies the maximum sharpness of a weapon
+// resistAll	- Integer	Modifies all elemental resistances
+// resistFire	- Integer	Modifies fire resistance
+// resistWater	- Integer	Modifies water resistance
+// resistIce	- Integer	Modifies ice resistance
+// resistThunder	- Integer	Modifies thunder resistance
+// resistDragon	- Integer	Modifies dragon resistance
 
 	selectedArmorSet.activeParts.forEach(piece => {
 		// add armor part defense to total defense status
@@ -38,17 +54,18 @@ const StatusList = (props) => {
 		const resistances = selectedArmorSet[piece].selected.resistances ? Object.entries(selectedArmorSet[piece].selected.resistances) : Object.entries({ fire: 0, water: 0, ice: 0, thunder: 0, dragon: 0 });
 
 		resistances.forEach(resistance => {
-			// Check if positive or negative integer
-			if(Math.sign(resistance[1])) {
-				activeResistancesObj[resistance[0]] = activeResistancesObj[resistance[0]] + resistance[1]; 
-			} else {
-				activeResistancesObj[resistance[0]] = activeResistancesObj[resistance[0]] - resistance[1];
-			}
+			activeResistancesObj[resistance[0]] = activeResistancesObj[resistance[0]] + resistance[1]; 
 		});
 	});
 
 	// apply skill attack modifiers
-	const skillModifiers = [ { skillName: 'Attack Boost', ranks: [3,6,9,12,15,18,21] }, { skillName: 'Agitator', ranks: [4,8,12,16,20] }, { skillName: 'Peak Performance', ranks: [5,10,20] }, { skillName: 'Heroics', ranks: [5,10,15], percent: true}, { skillName: 'Fortify', ranks: [10], percent: true }, { skillName: 'Critical Eye', ranks: [3,6,10,15,20,25,30] }, { skillName: 'Maximum Might', ranks: [10,20,30] }, { skillName: 'Free Elem/Ammo Up', ranks: [33,66,100] } ];
+	const skillModifiers = [ { skillName: 'Attack Boost', ranks: [3,6,9,12,15,18,21] }, { skillName: 'Agitator', ranks: [4,8,12,16,20] }, { skillName: 'Peak Performance', ranks: [5,10,20] }, { skillName: 'Heroics', ranks: [5,10,15], percent: true}, { skillName: 'Fortify', ranks: [10], percent: true }, { skillName: 'Critical Eye', ranks: [3,6,10,15,20,25,30] }, { skillName: 'Maximum Might', ranks: [10,20,30] }, { skillName: 'Free Elem/Ammo Up', ranks: [0.33,0.66,1] } ];
+
+	// loop through activeSkills and get modifiers
+
+	// activeArmorSkills.forEach(activeSkill => {
+		
+	// });
 
 	skillModifiers.forEach(skill => {
 		const modifierPattern = new RegExp(`(${skill.skillName})`, 'i');
@@ -64,11 +81,10 @@ const StatusList = (props) => {
 					}
 					hunterStatusModifiers['attack'][skill.skillName] = rank;
 					hunterStatusModifiers['affinity'][skill.skillName] = 5;
-					// attack['modified']['check'] = true;
 				} else {
 					hunterStatusModifiers['attack'][skill.skillName] = skill.ranks[activeArmorSkills[skill.skillName].value - 1];
-					// attack['modified']['check'] = true;
 				}
+
 			} else if(skill.skillName === 'Critical Eye') {
 				let rank = 0;
 				if(activeArmorSkills[skill.skillName].value > skill.ranks.length) {
@@ -130,14 +146,12 @@ const StatusList = (props) => {
 		return <li key={index}><span>{resistance[0]}</span><span>{resistance[1]}</span></li>
 	});
 
-	// {attackStatusList}
-
 	return (
 		<div className="status-list hunter-ui-card results">
 			<h2>Attack Status</h2>
 			<ul className="attack-status-list">
 				<AttackStatus selectedWeapon={selectedWeapon} attackModifiers={hunterStatusModifiers.attack} />
-				<ElementStatus selectedWeapon={selectedWeapon} />
+				<ElementStatus selectedWeapon={selectedWeapon} elementModifiers={hunterStatusModifiers.attack} />
 				<SharpnessStatus selectedWeapon={selectedWeapon} />
 				<AffinityStatus affinityModifiers={hunterStatusModifiers.affinity} />
 			</ul>

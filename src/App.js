@@ -191,9 +191,6 @@ class App extends Component {
       }));
     }
 
-    // check active skills state
-    // if(this.state.selectedArmorSet.activeSkills !== )
-
     console.log('App Component Updated!');
   }
 
@@ -235,18 +232,18 @@ class App extends Component {
     }));
   }
 
-  onSelectedDeco = (e) => {
+  onSelectedDeco = (e, decoResults) => {
     
     const decoIndex = parseInt(e.target.getAttribute('data-deco-index'));
     const slotIndex = parseInt(e.target.getAttribute('data-slot-index'));
     
     const part = e.target.getAttribute('data-part');
-    const { partDecos, decoResults } = this.state.selectedArmorSet[part];
+    // const { partDecos, decoResults } = this.state.selectedArmorSet[part];
+    const { partDecos } = this.state.selectedArmorSet[part];
 
     const updatePartDecos = partDecos.map((slot, index) => {
       if(slotIndex === index) {
         return { ...slot, active: false, ...decoResults[decoIndex] } 
-        // return { ...slot, active: false, id: decoSkillId, skillName: decoSkillName, level: decoSkillLevel } 
       } else {
         return { ...slot, active: false }
       }
@@ -305,7 +302,7 @@ class App extends Component {
 
   onSelectedArmor = (e) => {
 
-    const armorType = e.target.getAttribute('data-armor-type') ? e.target.getAttribute('data-armor-type') : '';
+    const armorType = e.target.getAttribute('data-equipment-type') ? e.target.getAttribute('data-equipment-type') : '';
     const armorName = e.target.getAttribute('data-selected-armor') ? e.target.getAttribute('data-selected-armor') : '';
     const index = e.target.getAttribute('data-selected-index');
     const searchBar = e.target.getAttribute('data-search-bar');
@@ -350,238 +347,6 @@ class App extends Component {
     }));
   }
 
-  onFocusPartSearch = (e) => {
-    this.setState(prevState => ({
-      selectedArmorSet: {
-        ...prevState.selectedArmorSet,
-        weapon: {
-          ...prevState.selectedArmorSet.weapon,
-          results: [],
-          decoResults: []
-        },
-        head: {
-          ...prevState.selectedArmorSet.head,
-          results: [],
-          decoResults: []
-        }, 
-        chest: {
-          ...prevState.selectedArmorSet.chest,
-          results: [],
-          decoResults: []
-        }, 
-        gloves: {
-          ...prevState.selectedArmorSet.gloves,
-          results: [],
-          decoResults: []
-        }, 
-        waist: {
-          ...prevState.selectedArmorSet.waist,
-          results: [],
-          decoResults: []
-        }, 
-        legs: {
-          ...prevState.selectedArmorSet.legs,
-          results: [],
-          decoResults: []
-        },
-        charm: {
-          ...prevState.selectedArmorSet.charm,
-          results: [],
-          decoResults: []
-        }
-      }
-    }));
-  }
-
-  onFocusSlotSearch = (e) => {
-
-    const slotIndex = parseInt(e.target.getAttribute('data-slot-index'));
-    const slotRank = parseInt(e.target.getAttribute('data-slot-rank'));
-    const equipmentPart = e.target.getAttribute('data-part');
-    const { partDecos } = this.state.selectedArmorSet[equipmentPart];
-    const decoPieces =  this.state.decorationList;
-    let decoResults = [];
-
-    const updatePartDecos = partDecos.map((slot,index) => {
-      if(slotIndex === index) {
-        return { ...slot, active: true }
-      } else {
-        return { ...slot, active: false }
-      }
-    });
-
-    decoPieces.forEach(deco => {
-      if(deco.slot <= slotRank ) {
-        deco.skills.forEach(skill => {
-          decoResults = [ { id: skill.id, skillName: skill.skillName, level: skill.level, slotRank, slot: deco.slot }, ...decoResults ]
-        });
-      }
-    });
-
-    // Sort Deco Results..
-    decoResults.sort((a,b) => a.skillName > b.skillName ? 1 : -1);
-
-    // To Clear global search results...
-    this.onFocusPartSearch();
-    this.setState(prevState => ({
-      ...prevState,
-      selectedArmorSet: {
-        ...prevState.selectedArmorSet,
-        [equipmentPart]: {
-          ...prevState.selectedArmorSet[equipmentPart],
-          partDecos: updatePartDecos,
-          decoResults,
-          results: []
-        }
-      }
-    }));
-  }
-
-  onWeaponInputSearch = (e) => {
-
-    // add RegEx input checker here..
-    const searchString = e.target.value;
-    const pattern = new RegExp(`^${e.target.value}`,'i');
-    let weaponSearchResults = [];
-    const weaponPieces = this.state.weaponList;
-
-    // // Sort Weapon Pieces..
-    weaponPieces.sort((a,b) => a.name < b.name ? 1 : -1);
-
-    weaponPieces.forEach((weapon, index) => {
-      if(pattern.test(weapon.name) && e.target.value !== '') {
-        weaponSearchResults = [<li key={index}><button data-selected-weapon={weapon.name} data-selected-index={index} onClick={this.onSelectedWeapon}>{weapon.name}</button></li>, ...weaponSearchResults ];
-      }
-    });
-
-    this.setState(prevState => ({
-      selectedArmorSet: {
-        ...prevState.selectedArmorSet,
-        weapon: {
-          ...prevState.selectedArmorSet.weapon,
-          searchString,
-          selected: null,
-          results: weaponSearchResults
-        }
-      }
-    }));
-  }
-
-  onCharmInputSearch = (e) => {
-
-    // add RegEx input checker here..
-    const searchString = e.target.value;
-    const pattern = new RegExp(`^${e.target.value}`,'i');
-    let charmSearchResults = [];
-    const charmPieces = this.state.charmList;
-
-    // // Sort Charm Pieces..
-    charmPieces.sort((a,b) => a.name < b.name ? 1 : -1);
-
-    charmPieces.forEach((charm, parentIndex) => {
-      if(pattern.test(charm.name) && e.target.value !== '') {
-        const charmRanks = charm.ranks.map((rank, index) => {
-          return <li key={index}><button data-selected-rank={rank.name} data-parent-index={parentIndex} data-index={index} onClick={this.onSelectedCharm}>{rank.name}</button></li>
-        });
-
-        charmSearchResults = [charmRanks, ...charmSearchResults]
-      }
-    });
-
-    this.setState(prevState => ({
-      selectedArmorSet: {
-        ...prevState.selectedArmorSet,
-        charm: {
-          ...prevState.selectedArmorSet.charm,
-          searchString,
-          selected: null,
-          results: charmSearchResults
-        }
-      }
-    }));
-  }
-
-  onDecoInputSearch = (e) => {
-    
-    // write a RegEx here..
-    const searchString = e.target.value;
-    const decoIndex = parseInt(e.target.getAttribute('data-slot-index'));
-    const part = e.target.getAttribute('data-part');
-    const slotRank = parseInt(e.target.getAttribute('data-slot-rank'));
-
-    const decoPieces = this.state.decorationList;
-    const partDecos = this.state.selectedArmorSet[part].partDecos;
-
-    let pattern = new RegExp(`^(${e.target.value})`,'i');
-    let decoResults = [];
-
-    decoPieces.forEach(deco => {
-      deco.skills.forEach(skill => {
-        if(pattern.test(skill.skillName)) {
-          if(deco.slot <= slotRank) {
-            decoResults = [ { id: skill.id, skillName: skill.skillName, slotRank,  slot: deco.slot, level: skill.level }, ...decoResults ];
-          }
-        }
-      });
-    });
-
-    const updatePartDecos = partDecos.map((slot, index) => {
-      if(decoIndex === index) {
-        return { ...slot, active: true, searchString }
-      } else {
-        return { ...slot, active: false }
-      }
-    });
-
-    // Sort Deco Results..
-    decoResults.sort((a,b) => a.skillName > b.skillName ? 1 : -1);
-
-    this.setState(prevState => ({
-      ...prevState,
-      selectedArmorSet: {
-        ...prevState.selectedArmorSet,
-        [part]: {
-          ...prevState.selectedArmorSet[part],
-          partDecos: updatePartDecos,
-          decoResults,
-        }
-      }
-    }));
-  }
-
-  onInputPartSearch = (e) => {
-    const armorType = e.target.getAttribute('data-armor-type');
-    const armorPieces = this.state.selectedArmorSet[armorType]['pieces'];
-
-    let armorSearchResults = [];
-    let searchString = e.target.value;
-    let pattern = new RegExp(`^${e.target.value}`,'i');
-
-    // // Sort Armor Pieces..
-    armorPieces.sort((a,b) => a.name < b.name ? 1 : -1);
-
-    armorPieces.forEach((armor, index) => {
-      if(pattern.test(armor.name) && e.target.value !== '') {
-        
-        armorSearchResults = [<li key={index}><button data-armor-type={armor.type} data-selected-armor={armor.name} data-selected-index={index} onClick={this.onSelectedArmor}>{armor.name}</button></li>, ...armorSearchResults ];
-      }
-    });
-
-
-
-    this.setState(prevState => ({
-      selectedArmorSet: {
-        ...prevState.selectedArmorSet,
-        [armorType]: {
-          ...prevState.selectedArmorSet[armorType],
-          searchString,
-          selected: null,
-          results: armorSearchResults
-        }
-      }
-    }));
-  }
-
   onRemoveDecoPiece = (e) => {
     
     const part = e.target.getAttribute('data-part');
@@ -610,8 +375,8 @@ class App extends Component {
     }));
   }
 
-  onRemoveArmorPiece = (e) => {
-    const armorPiece = e.target.getAttribute('data-armor-piece');
+  onRemoveEquipmentPart = (e) => {
+    const armorPiece = e.target.getAttribute('data-equipment-type');
 
     this.setState(prevState => ({
       selectedArmorSet: {
@@ -628,6 +393,37 @@ class App extends Component {
     }));
   }
 
+  // skill modifiers functions
+  onSkillModifier = (skillObject) => {
+
+    if(!skillObject) return;
+
+    const currentSkillLevel = skillObject.value;
+    const skillLevels = skillObject.ranks;
+    let rank = currentSkillLevel - 1;
+
+    if(currentSkillLevel > skillLevels.length) {
+      rank = skillLevels[skillLevels.length - 1];
+    }
+
+    const skillModifiers = Object.entries(skillLevels[rank].modifiers);
+
+    if(skillModifiers.length === 0) return {};
+
+    return { }
+  }
+
+  onActiveSkills = (payload) => {
+    this.setState(prevState => ({
+      ...prevState,
+      selectedArmorSet: {
+        ...prevState.selectedArmorSet,
+        activeSkills: payload
+      }
+        
+    }));
+  }
+
   render() {
 
     // console.log(this.state.weaponList);
@@ -637,7 +433,7 @@ class App extends Component {
     // console.log(this.state.charmList);
 
     // this.state.skillsList.forEach(skill => {
-    //   const pattern =  new RegExp('(element)', 'i');
+    //   const pattern =  new RegExp('(attack)', 'i');
 
     //   if(pattern.test(skill.description)) {
     //     console.log(skill);
@@ -654,9 +450,8 @@ class App extends Component {
         </header>
         <div className="container">
           <div className="main-content">
-            <ArmorLoadoutBuilder weaponList={this.state.weaponList} armorList={this.state.armorList} charmList={this.state.charmList} decorationList={this.state.decorationList} selectedArmorSet={this.state.selectedArmorSet} onSelectedArmor={this.onSelectedArmor} onSelectedDeco={this.onSelectedDeco} onRemoveDecoPiece={this.onRemoveDecoPiece} onRemoveArmorPiece={this.onRemoveArmorPiece} clearedArmorPart={this.state.clearedArmorPart} onWeaponInputSearch={this.onWeaponInputSearch} onCharmInputSearch={this.onCharmInputSearch} onDecoInputSearch={this.onDecoInputSearch} onInputPartSearch={this.onInputPartSearch} onFocusPartSearch={this.onFocusPartSearch} onFocusSlotSearch={this.onFocusSlotSearch} onBlurSearch={this.onBlurSearch} onBlurContainer={this.onBlurContainer} onFocusContainer={this.onFocusContainer} />
-            <HunterStatus skillsList={this.state.skillsList} selectedArmorSet={this.state.selectedArmorSet}  />
-            
+            <ArmorLoadoutBuilder weaponList={this.state.weaponList} armorList={this.state.armorList} charmList={this.state.charmList} decorationList={this.state.decorationList} selectedArmorSet={this.state.selectedArmorSet} onSelectedArmor={this.onSelectedArmor} onSelectedDeco={this.onSelectedDeco} onRemoveDecoPiece={this.onRemoveDecoPiece} onRemoveEquipmentPart={this.onRemoveEquipmentPart} clearedArmorPart={this.state.clearedArmorPart} onSelectedWeapon={this.onSelectedWeapon} onSelectedCharm={this.onSelectedCharm} onCharmInputSearch={this.onCharmInputSearch} />
+            <HunterStatus skillsList={this.state.skillsList} selectedArmorSet={this.state.selectedArmorSet} onSkillModifier={this.onSkillModifier} onActiveSkills={this.onActiveSkills} />
           </div>
         </div>
       </div>

@@ -5,13 +5,15 @@ h1, h2 {
 body {
   /*background-color: #00b8d6;*/
   background: #f1f1f1 url('../src/sapphirestar.svg') center center no-repeat;
+  /*background-size: cover;*/
+  /*background-position: 100% 35%;*/
   color: #ffffffbd;
   /*display: none;*/
 }
 
 /*pseudo styles for "placeholder"*/
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  font-style: italic;
+  /*font-style: italic;*/
   letter-spacing: 0.1rem;
   opacity: 0.5;
 }
@@ -26,6 +28,7 @@ body {
 }
 
 input[type=text] {
+  font-size: 1rem;
   border-radius: 5px;
   box-shadow: none;
   border: 2px solid #2b2b2b;
@@ -109,7 +112,9 @@ button {
   position: absolute;
   top: -33px;
   right: 0;
-  color: #fff;
+  background-color: #f1f1f1;
+  color: #2b2b2b;
+  font-weight: bold;
   border: 1px solid #fff;
   border-radius: 5px;
   padding: 5px 10px;
@@ -457,16 +462,25 @@ button {
 .clear-button {
   /*background: url('../src/remove.svg') center no-repeat;*/
   position: absolute;
-  width: 25px;
-  height: 25px;
-  top: calc(25px / 2);
-  right: calc(30px / 2);
+  /*width: 25px;*/
+  /*height: 25px;*/
+  /*top: calc(25px / 2);*/
+  /*right: calc(30px / 2);*/
+  /*width: 70px;*/
+  top: 0;
+  right: 5px;
+  bottom: 0;
+  padding: 0 5px;
   font-weight: bold;
   color: #2b2b2b;
+  /*border: 1px solid #000;*/
 }
 
 .clear-button.selected {
   background: url('../src/remove.svg') center no-repeat;
+  right: 5px;
+  padding: 0 15px;
+  /*width: 50px;*/
 }
 
 .equipment-list > ul li .armor-part-container .armor-part-search-result {
@@ -557,7 +571,7 @@ button {
 }
 
 .skills-list > ul > li span.exceeded {
-  background-color: #f00;
+  background-color: #e04f5f;
   flex: 0;
 } 
 

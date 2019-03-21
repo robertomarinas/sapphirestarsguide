@@ -16,6 +16,10 @@ class MainSearch extends Component {
 		}
 	}
 
+	// componentDidUpdate(prevState) {
+	// 	console.log('main-search updated');
+	// }
+
 	onInputSearch = (e) => {
 		
 		this.setState({ searchVal: e.target.value });

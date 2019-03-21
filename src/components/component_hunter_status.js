@@ -6,11 +6,28 @@ import StatusList from './component_status_list';
 
 class HunterStatus extends Component {
 
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			activeSkills: {}
+		};
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+	}
+
 	render() {
+
+		// Skills
+		// id property is 'modifier id'
+		// skill property is 'skill id'
+
+		console.log('hunter status component rerendered...');
 
 		let activeArmorSkills = {};
 		let activeSkillsText = '';
-		const { skillsList, selectedArmorSet } = this.props;
+		const { skillsList, selectedArmorSet, onSkillModifier } = this.props;
 		
 		selectedArmorSet.activeParts.forEach(piece => {
 			const { partDecos } = selectedArmorSet[piece];
@@ -19,6 +36,7 @@ class HunterStatus extends Component {
 				selectedArmorSet[piece].selected.skills.forEach(armorSkill => {
 			
 					const pattern = new RegExp(`(${armorSkill.skillName})`, 'gi');
+					const id = armorSkill.skill;
 					let value = armorSkill.level;
 
 					if(pattern.test(activeSkillsText)) {
@@ -27,17 +45,13 @@ class HunterStatus extends Component {
 
 						let ranks = [];
 						let description = '';
+						
+						// get Skill ranks..
+						ranks = skillsList[id - 1]['ranks'];
+						description = skillsList[id - 1]['description'];
 
-						skillsList.forEach(skill => {
-							if(skill.name === armorSkill.skillName) {
-								ranks = skill.ranks;
-								description = skill.description;
-							}
-						});
-
-						activeArmorSkills = { [armorSkill.skillName]: { value, ranks, description, skillName: armorSkill.skillName }, ...activeArmorSkills };
+						activeArmorSkills = { [armorSkill.skillName]: { id, value, ranks, description, skillName: armorSkill.skillName }, ...activeArmorSkills };
 						activeSkillsText += `${armorSkill.skillName} `;
-
 					}
 				});
 			}
@@ -81,7 +95,7 @@ class HunterStatus extends Component {
 		return (
 			<div className="hunter-status">
 				<SkillsList activeArmorSkills={activeArmorSkills} displayActiveSkills={displayActiveSkills} selectedArmorSet={this.props.selectedArmorSet} />
-            	<StatusList activeArmorSkills={activeArmorSkills} displayActiveSkills={displayActiveSkills} selectedArmorSet={this.props.selectedArmorSet} selectedWeapon={this.props.selectedArmorSet.weapon.selected} activeSkillsText={activeSkillsText} />
+            	<StatusList activeArmorSkills={activeArmorSkills} displayActiveSkills={displayActiveSkills} selectedArmorSet={this.props.selectedArmorSet} selectedWeapon={this.props.selectedArmorSet.weapon.selected} activeSkillsText={activeSkillsText} onSkillModifier={onSkillModifier} />
 			</div>
 		)
 	}

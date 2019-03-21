@@ -4,16 +4,6 @@ const AttackStatus = (props) => {
 
 	const { selectedWeapon, attackModifiers } = props;
 
-	// let attack = {
-	// 	modified: { value: 0, check: false},
-	// 	display: null,
-	// 	modifier: null,
-	// 	raw: null,
-	// 	sharpness: null,
-	// 	element: null,
-	// 	affinity: 0
-	// };
-
 	const weaponModifier = {
 		hammer: 5.2,
 		greatSword: 4.8,
@@ -34,6 +24,7 @@ const AttackStatus = (props) => {
 	let selectedWeaponDisplay = 0;
 	let modifiedAttack = false;
 	let rawDamage = 0;
+	let modifiedRawDamage = 0;
 	let selectedWeaponModifier = 0;
 	let skillModifier = 0;
 
@@ -123,7 +114,7 @@ const AttackStatus = (props) => {
 	const attackModifiersArray = Object.entries(attackModifiers);
 
 	if(attackModifiersArray.length > 0) {
-		Object.entries(attackModifiers).forEach(modifier => {
+		attackModifiersArray.forEach(modifier => {
 			switch (modifier[0]) {
 				case 'Attack Boost':
 					skillModifier = modifier[1];
@@ -137,7 +128,8 @@ const AttackStatus = (props) => {
 	// calculated overall attack including bonus from skills (modifiers)
 
 	if(skillModifier > 0) {
-		modifiedAttack = (rawDamage + skillModifier) * selectedWeaponModifier;	
+		modifiedRawDamage = rawDamage + skillModifier;
+		modifiedAttack = modifiedRawDamage * selectedWeaponModifier;	
 	}
 
 	// Attack Calculation
@@ -236,7 +228,7 @@ const AttackStatus = (props) => {
 	return (
 		<li className="attack-info">
 			<div><span>display:</span> <span>{Math.round(selectedWeaponDisplay)} {modifiedAttack ? `( ${Math.round(modifiedAttack)} )` : ''}</span></div>	
-			<div><span>raw:</span> <span>{Math.round(rawDamage)}</span></div>	
+			<div><span>raw:</span> <span>{Math.round(rawDamage)} {modifiedRawDamage ? `( ${Math.round(modifiedRawDamage)} )` : ''}</span></div>	
 			<div><span>modifier:</span> <span>{selectedWeaponModifier}</span></div>	
 		</li>
 	)

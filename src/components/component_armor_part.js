@@ -18,7 +18,7 @@ const ArmorPart = (props) => {
 				}
 			});
 
-			armorPiece = <ArmorPartSearch armorPieces={headPieces} armorPart="head" clearedArmorPart={props.clearedArmorPart} selectedArmorSet={props.selectedArmorSet} onInputPartSearch={props.onInputPartSearch} onFocusPartSearch={props.onFocusPartSearch} onSelectedArmor={props.onSelectedArmor} onSelectedDeco={props.onSelectedDeco} onFocusSlotSearch={props.onFocusSlotSearch} onBlurSearch={props.onBlurSearch} onBlurContainer={props.onBlurContainer} onFocusContainer={props.onFocusContainer} onDecoInputSearch={props.onDecoInputSearch} onRemoveDecoPiece={props.onRemoveDecoPiece} onRemoveArmorPiece={props.onRemoveArmorPiece} />
+			armorPiece = <ArmorPartSearch armorPieces={headPieces} armorPart="head" clearedArmorPart={props.clearedArmorPart} decorationList={props.decorationList} selectedArmorSet={props.selectedArmorSet} onSelectedArmor={props.onSelectedArmor} onSelectedDeco={props.onSelectedDeco} activeInputPart={props.activeInputPart} onSelectInput={props.onSelectInput} activeDecoInputPart={props.activeDecoInputPart} onSelectDecoInput={props.onSelectDecoInput} onClearDecoResults={props.onClearDecoResults} onRemoveDecoPiece={props.onRemoveDecoPiece} onRemoveEquipmentPart={props.onRemoveEquipmentPart} />
 			
 			break;
 		
@@ -30,7 +30,7 @@ const ArmorPart = (props) => {
 				}
 			});
 
-			armorPiece = <ArmorPartSearch armorPieces={chestPieces} armorPart="chest" clearedArmorPart={props.clearedArmorPart} selectedArmorSet={props.selectedArmorSet} onInputPartSearch={props.onInputPartSearch} onFocusPartSearch={props.onFocusPartSearch} onSelectedArmor={props.onSelectedArmor} onSelectedDeco={props.onSelectedDeco} onFocusSlotSearch={props.onFocusSlotSearch} onBlurSearch={props.onBlurSearch} onBlurContainer={props.onBlurContainer} onFocusContainer={props.onFocusContainer} onDecoInputSearch={props.onDecoInputSearch} onRemoveDecoPiece={props.onRemoveDecoPiece} onRemoveArmorPiece={props.onRemoveArmorPiece} />
+			armorPiece = <ArmorPartSearch armorPieces={chestPieces} armorPart="chest" clearedArmorPart={props.clearedArmorPart} decorationList={props.decorationList} selectedArmorSet={props.selectedArmorSet} onSelectedArmor={props.onSelectedArmor} onSelectedDeco={props.onSelectedDeco} activeInputPart={props.activeInputPart} onSelectInput={props.onSelectInput} activeDecoInputPart={props.activeDecoInputPart} onSelectDecoInput={props.onSelectDecoInput} onClearDecoResults={props.onClearDecoResults} onRemoveDecoPiece={props.onRemoveDecoPiece} onRemoveEquipmentPart={props.onRemoveEquipmentPart} />
 
 			break;
 		
@@ -42,7 +42,7 @@ const ArmorPart = (props) => {
 				}
 			});
 
-			armorPiece = <ArmorPartSearch armorPieces={glovesPieces} armorPart="gloves" clearedArmorPart={props.clearedArmorPart} selectedArmorSet={props.selectedArmorSet} onInputPartSearch={props.onInputPartSearch} onFocusPartSearch={props.onFocusPartSearch} onSelectedArmor={props.onSelectedArmor} onSelectedDeco={props.onSelectedDeco} onFocusSlotSearch={props.onFocusSlotSearch} onBlurSearch={props.onBlurSearch} onBlurContainer={props.onBlurContainer} onFocusContainer={props.onFocusContainer} onDecoInputSearch={props.onDecoInputSearch} onRemoveDecoPiece={props.onRemoveDecoPiece} onRemoveArmorPiece={props.onRemoveArmorPiece} />
+			armorPiece = <ArmorPartSearch armorPieces={glovesPieces} armorPart="gloves" clearedArmorPart={props.clearedArmorPart} decorationList={props.decorationList} selectedArmorSet={props.selectedArmorSet} onSelectedArmor={props.onSelectedArmor} onSelectedDeco={props.onSelectedDeco} activeInputPart={props.activeInputPart} onSelectInput={props.onSelectInput} activeDecoInputPart={props.activeDecoInputPart} onSelectDecoInput={props.onSelectDecoInput} onClearDecoResults={props.onClearDecoResults} onRemoveDecoPiece={props.onRemoveDecoPiece} onRemoveEquipmentPart={props.onRemoveEquipmentPart} />
 
 			break;
 
@@ -54,7 +54,7 @@ const ArmorPart = (props) => {
 				}
 			});
 
-			armorPiece = <ArmorPartSearch armorPieces={waistPieces} armorPart="waist" clearedArmorPart={props.clearedArmorPart} selectedArmorSet={props.selectedArmorSet} onInputPartSearch={props.onInputPartSearch} onFocusPartSearch={props.onFocusPartSearch} onSelectedArmor={props.onSelectedArmor} onSelectedDeco={props.onSelectedDeco} onFocusSlotSearch={props.onFocusSlotSearch} onBlurSearch={props.onBlurSearch} onBlurContainer={props.onBlurContainer} onFocusContainer={props.onFocusContainer} onDecoInputSearch={props.onDecoInputSearch} onRemoveDecoPiece={props.onRemoveDecoPiece} onRemoveArmorPiece={props.onRemoveArmorPiece} />
+			armorPiece = <ArmorPartSearch armorPieces={waistPieces} armorPart="waist" clearedArmorPart={props.clearedArmorPart} decorationList={props.decorationList} selectedArmorSet={props.selectedArmorSet} onSelectedArmor={props.onSelectedArmor} onSelectedDeco={props.onSelectedDeco} activeInputPart={props.activeInputPart} onSelectInput={props.onSelectInput} activeDecoInputPart={props.activeDecoInputPart} onSelectDecoInput={props.onSelectDecoInput} onClearDecoResults={props.onClearDecoResults} onRemoveDecoPiece={props.onRemoveDecoPiece} onRemoveEquipmentPart={props.onRemoveEquipmentPart} />
 
 			break;
 
@@ -66,7 +66,7 @@ const ArmorPart = (props) => {
 				}
 			});
 
-			armorPiece = <ArmorPartSearch armorPieces={legsPieces} armorPart="legs" clearedArmorPart={props.clearedArmorPart} selectedArmorSet={props.selectedArmorSet} onInputPartSearch={props.onInputPartSearch} onFocusPartSearch={props.onFocusPartSearch} onSelectedArmor={props.onSelectedArmor} onSelectedDeco={props.onSelectedDeco} onFocusSlotSearch={props.onFocusSlotSearch} onBlurSearch={props.onBlurSearch} onBlurContainer={props.onBlurContainer} onFocusContainer={props.onFocusContainer} onDecoInputSearch={props.onDecoInputSearch} onRemoveDecoPiece={props.onRemoveDecoPiece} onRemoveArmorPiece={props.onRemoveArmorPiece} />
+			armorPiece = <ArmorPartSearch armorPieces={legsPieces} armorPart="legs" clearedArmorPart={props.clearedArmorPart} decorationList={props.decorationList} selectedArmorSet={props.selectedArmorSet} onSelectedArmor={props.onSelectedArmor} onSelectedDeco={props.onSelectedDeco} activeInputPart={props.activeInputPart} onSelectInput={props.onSelectInput} activeDecoInputPart={props.activeDecoInputPart} onSelectDecoInput={props.onSelectDecoInput} onClearDecoResults={props.onClearDecoResults} onRemoveDecoPiece={props.onRemoveDecoPiece} onRemoveEquipmentPart={props.onRemoveEquipmentPart} />
 
 			break;
 
@@ -74,9 +74,7 @@ const ArmorPart = (props) => {
 			break;
 
 	}
-
-	return armorPiece
-	
+	return armorPiece;
 }
 
 export default ArmorPart;
